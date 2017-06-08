@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import file
+from file import File
 
 class Perfil(object):
 	def __init__(self,nome,telefone,empresa):
@@ -18,13 +18,16 @@ class Perfil(object):
 	def obter_curtidas(self):
 		return self.__curtidas
 
-	@staticmethod
-	def exportar_perfil(self):
-		file = File('download/profiles.csv')
-		file.write(*profile)
-
 	@classmethod
-	def importar_perfis():	
+	def importar_perfis(classe,file_path='download/profiles.csv'):	
+		file 		= File(file_path)
+		perfis_raw  = file.read()
+		perfis 		= []
+
+		for perfil in perfis_raw:
+			perfis.append(classe(*perfil.split(',')))
+
+		return perfis
 
 class Perfil_Vip(Perfil):
 	def __init__(self, nome,telefone,empresa,apelido):
